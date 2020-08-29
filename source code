@@ -1,0 +1,197 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks.Dataflow;
+
+namespace ConsoleApp13
+{
+    class Program
+    {
+
+        static void Main(string[] args)  // Main method, used only for calling Calculator() back to restart the program. 
+        {
+            Calculator();   // Calls the Calculator() method back, effectively restarting the calculator when prompted (line 80-83)
+
+        }
+        static void Calculator()   // all program code here, is called only in the end. combined all basic -+/* operators into one main if since they are easy to code.
+        {   
+            Console.WriteLine("Type 1 to use one of the listed operators, 2 to view more.\n\nAddition\nSubtraction\nMultiplication\nDivision\n ");
+            int basicop = (Convert.ToInt32(Console.ReadLine()));
+            if (basicop == 1)
+            {
+                Console.Write("\nEnter a number: ");
+                double num1 = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("\nEnter Operator: ");
+                string op = Console.ReadLine();
+
+                Console.Write("\nEnter a number: ");
+                double num2 = Convert.ToDouble(Console.ReadLine());
+
+                if (op == "+")
+                {
+                    Console.WriteLine("\n" + (num1 + num2));
+                }
+                else if (op == "-")
+                {
+                    Console.WriteLine("\n" + (num1 + num2));
+                }
+                else if (op == "/")
+                {
+                    Console.WriteLine("\n" + (num1 / num2));
+                }
+                else if (op == "*")
+                {
+                    Console.WriteLine("\n" + (num1 * num2));
+                }
+                else
+                    Console.WriteLine("Invalid Operator");
+                Console.ReadLine();
+            }
+            if (basicop == 2)  // if user input was two in the first if statement, it brings up the new options below, which includes selection.
+            {
+                Console.WriteLine("----------------\n" + "Pick from the list: \n1:  Exponents\n2:  Absolute Value\n3:  Pythagorean Theorem \n4:  Square Root \n5:  Remainder: \n6:  Log Base e \n7:  Log Base 2\n8:  Log Base 10\n" +
+                    "9:  (RAD)Sin\n10: (RAD)Cos\n11: (RAD)Tan\n12: (DEG)Sin\n13: (DEG)Cos\n14: (DEG)Tan\n ");
+
+                int advOp = Convert.ToInt32(Console.ReadLine());
+                if (advOp == 1)
+                {
+                    Console.WriteLine("\nEnter the number you would like to square: \n");
+                    double num1 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nEnter the power you would like to use: \n");
+                    double num2 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nThe answer is: " + Math.Pow(num1, num2));
+
+                }
+                else if (advOp == 2)
+                {
+                    Console.WriteLine("\nEnter the number that you would like to find the absolute power of: ");
+                    double num3 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\n The Absolute Value is: " + Math.Abs(num3) + "\n" );
+                }
+                else if (advOp == 3)
+                {
+                    Console.WriteLine("\nEnter side \"A\"");
+                    double num4 = Math.Pow(Convert.ToDouble(Console.ReadLine()), 2);
+                    Console.WriteLine("\nEnter side \"B\"");
+                    double num5 = Math.Pow(Convert.ToDouble(Console.ReadLine()), 2);
+                    Console.WriteLine("\nSide \"c\" is equal to: " + Math.Sqrt(num4 + num5) + "\n");
+
+                }
+                else if (advOp == 4)
+                {
+                    Console.WriteLine("\nEnter the number that you want to find the square root of: \n");
+                    double num6 = Convert.ToDouble(Console.ReadLine());
+                    double num7 = Math.Sqrt(num6);
+                    Console.WriteLine("\nThe Square root of √" + num6 + " is: " + num7 + "\n");
+                }
+                else if (advOp == 5)
+                {
+                    Console.WriteLine("\nEnter the division numbers that you want the remainder for: \n");
+                    double num8 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nEnter number to divide the first number by:  \n");
+                    double num9 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nThe remainder is: " + Math.IEEERemainder(num8, num9) + "\n");
+                }
+                else if (advOp == 6)
+                {
+                    Console.WriteLine("\nEnter the number that you want to find the log base e of: \n");
+                    double num10 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("The Log Base e of " + num10 + " is: " + Math.Log(num10));
+                }
+                else if (advOp == 7)
+                {
+                    Console.WriteLine("\nEnter the number that you want to find the log base 2 of: \n");
+                    double num11 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nThe Log Base 2 of " + num11 + " is: " + Math.Log2(num11) + "\n");
+                }
+                else if (advOp == 8)
+                {
+                    Console.WriteLine("\nEnter the number that you want to find the log base 10 of: \n");
+                    double num12 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("\nThe Log Base 10 of " + num12 + " is: " + Math.Log10(num12) + "\n");
+                }
+                else if (advOp == 9)
+                {
+                    Console.WriteLine("\nEnter the Radian that you would like to find the Sine of: \n");
+                    double num13 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("The sine of the angle " + num13 + " is: " + Math.Sin(num13) + "\n" );
+                }
+                else if (advOp == 10)
+                {
+                    Console.WriteLine("\nEnter the Radian that you would like to find the Cosine of: \n");
+                    double num14 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("The Cosine of the angle " + num14 + " is: " + Math.Cos(num14) + "\n");
+                }
+                else if (advOp == 11)
+                {
+                    Console.WriteLine("\nEnter the Radian that you would like to find the Tangent of: \n");
+                    double num15 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("The Tangent of the angle " + num15 + " is: " + Math.Tan(num15) + "\n");
+                }
+                else if (advOp == 12)
+                {
+                    Console.WriteLine("\nEnter the Degree that you would like to find the Sine of: \n"); 
+                    double num13 = Convert.ToDouble(Console.ReadLine());
+                    num13 = (num13 * 57.2957795131);
+                    Console.WriteLine("The sine of the angle " + num13 + "(Your number * 180/Pi) is: " + Math.Sin(num13) + "\n");
+                }
+                else if (advOp == 13)
+                {
+                    Console.WriteLine("\nEnter the Degree that you would like to find the Cosine of: \n");
+                    double num14 = Convert.ToDouble(Console.ReadLine());
+                    num14 = (num14 * 57.2957795131);
+                    Console.WriteLine("The Cosine of the angle " + num14 + "(Your number * 180/Pi) is: " + Math.Cos(num14) + "\n");
+                }
+                else if (advOp == 14)
+                {
+                    Console.WriteLine("\nEnter the Degree that you would like to find the Tangent of: \n");
+                    double num15 = Convert.ToDouble(Console.ReadLine());
+                    num15 = (num15 * 57.2957795131);
+                    Console.WriteLine("The Tangent of the angle " + num15 + "(Your number * 180/Pi) is: " + Math.Tan(num15) + "\n");
+                }
+
+                else     // alerts user if invalid entry is inputted and resets them to the start of the program or termination. 
+                {
+                    Console.WriteLine("Invalid Choice");
+                }
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            }       // below is the code to restart the program or exit depending on user input.
+            Console.WriteLine("\nPress 1 to solve another question, anything else to close. Thank you <3");
+            String reset = Console.ReadLine();   // asks for input and assigns it to "reset" string.
+            if (reset == "1")
+            {
+                Calculator();  // calls on the main method which then calls back onto the current calculator method
+            }
+            else if (reset.Length == 0)   //reads if the length of the string "reset" is equal to 0. Pretty much ends the program if enter is clicked without anything typed in.
+            {
+                System.Environment.Exit(1);
+            }
+
+            else
+            {
+                System.Environment.Exit(1);    // closes the program if anything but "1" is sent besides null, which is taken care of above.
+            }
+
+        
+    }
+
+
+
+}
+}
